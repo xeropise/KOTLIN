@@ -87,3 +87,28 @@ fun mixOptimized(c1: Color,c2: Color) =
 	     }
 	     
 ```
+
+<br>
+
+- if, when 모두 분기에 블록을 사용할 수 있다. 블록의 마지막 문장이 블록 전체의 결과가 된다.
+
+```kotlin
+fun evalWithLogging(e: Expr): Int =
+    when(e) {
+        is Num -> {
+            println("num: ${e.value}")
+            e.value	// 블록의 마지막 식이 반환된다.
+        }
+        is Sum -> {
+            val left = evalWithLogging(e.left)
+            val right = evalWithLogging(e.right)
+            println("sum: $left + $right")
+            left + right;
+        }
+        else throw IllegalArgumentException("Unknown expression")
+    }
+    
+fun main() {
+    println(evalWithLogging(Sum(Sum(Num(1), Num(2)), Num(4))))
+}
+```
