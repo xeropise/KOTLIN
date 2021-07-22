@@ -1,3 +1,5 @@
+- in 연산자를 사용해 어떤 값이 범위에 속하는지 검사할 수 있다.
+
 ```kotlin
 
 fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'  // 'a' <= c && c <= 'z'
