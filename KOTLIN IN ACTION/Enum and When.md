@@ -66,3 +66,24 @@ fun main() {
     println(mix(Color.BLUE, Color.YELLOW))
 }
 ```
+
+- 위이 경우 분기 방식으로 차례대로 동등성 검사를 한다.
+
+- 위의 when 의 경우 인자가 있는 방식인데 분기 조건에 다른 두색과 같은지 비교하기 위해 여러 Set 인스턴스를 생성한다.  비효율성이 크게 문제되지는 않으나 이 함수가 자주 호출되는 경우, 불필요한 가비지 객체가 늘어나게 되므로 함수를 고치는 것이 낫다.
+
+<br>
+
+- 인자가 없는 when 식을 사용하면 불필요한 객체 생성을 막을 수 있다. 읽기 어려워지지만 성능을 더 향상시키기 위해 비용을 감수해야 하는 경우도 자주 있다. 
+
+- 인자가 없는 when 을 사용하려면 각 분기의 조건이 불리언 결과를 계산하는 식이어야 한다. 추가 객체를 만들지 않는다는 장점이 있지만 가독성이 떨어진다.
+
+```kotlin
+fun mixOptimized(c1: Color,c2: Color) = 
+	when {
+		(c1 == Color.RED && c2 == Color.YELLOW) || (c1 == Color.YELLOW && c2 == Color.RED) -> Color.ORANGE
+		(c1 == Color.YELLOW && c2 == Color.BLUE) || (c1 == Color.BLUE && c2 == Color.YELLOW) -> Color.GREEN
+		(c1 == Color.BLUE && c2 == Color.VIOLET) || (c1 == Color.VIOLET && c2 == Color.BLUE) -> Color.INDIGO
+		else -> throw Exception("Dirty Color")
+	     }
+	     
+```
