@@ -1,0 +1,78 @@
+### 코틀린의 예외 처리는 자바나 다른 언어의 예외 처리와 매우 비슷
+
+- 함수는 정상적으로 종료가능 하나 오류가 발생하면 예외 던질 수 있음
+
+- 발생한 예외를 함수 호출 단에서 처리하지 않으면 함수 호출 스택을 거슬러 올라가면서 예외를 처리하는 부분이 나올 때까지 예외를 다시 던진다.
+
+```kotlin
+if (percentage !in 0..100) {
+  // new 를 붙일 필요 없다.
+  throw IllegatlArgumentException("A percentage value mst be beetween 0 and 100: $percentage")
+}
+```
+
+
+
+### try, catch, finally
+
+```kotlin
+fun readNumber(reader: BufferedReader) : Int? { //함수가 던질 수 있는 예외를 명시할 필요가 없다.
+  try {
+    val line = reader.readLine()
+    return Integer.parseInt(line)
+  }
+  catch (e: NumberFormatException) { // 발생할 예외 타입을 :의 오른쪽에 쓴다.
+    return null
+  }
+  finally { // finally는 자바와 똑같이 작동한다.
+    reader.close()
+  }
+}
+```
+
+- __자바 코드와 가장 큰 차이는 throws 절이 코드에 없다.__
+
+- __자바에서는 체크 예외를 명시적으로 처리해야 하는데, 다 최신 JVM 언어와 마찬가지로 코틀린도 체크 예외와 언체크 예외를 구별하지 않는다.__
+
+
+
+### try 를 식으로 사용
+
+```kotlin
+fun readNumber(read: BufferedReader) {
+  val number = try {	// try를 값의 변수에 대입 가능
+    Integer.parseInt(reader.readLine())
+  } catch (e: NumberFormatException) {
+    return 
+  }
+  
+  println(number)
+}
+
+fun main() {
+  val reader = BufferedReader(StringReader("not a number"))
+  readNumber(reader) // catch 블록이 return으로 끝나므로 아무것도 반환하지 않는다.
+}
+```
+
+
+
+```kotlin
+fun readNumber(read: BufferedReader) {
+  val number = try {	// try를 값의 변수에 대입 가능
+    Integer.parseInt(reader.readLine())  //예외가 발생하지 않으면 이 값을 사용
+  } catch (e: NumberFormatException) {
+    null //예외가 발생하면 null 값을 사용 
+  }
+  
+  println(number)
+}
+
+fun main() {
+  val reader = BufferedReader(StringReader("not a number"))
+  readNumber(reader) // 예외가 발생하므로 null 값을 사용한다.
+}
+```
+
+
+
