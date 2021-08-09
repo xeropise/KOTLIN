@@ -1,3 +1,5 @@
+package typeSystem.`null`
+
 fun strLenSafe(s: String?): Int {
     if (s != null) {
         return s.length

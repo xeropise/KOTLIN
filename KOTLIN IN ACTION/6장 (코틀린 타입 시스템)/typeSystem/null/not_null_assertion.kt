@@ -1,4 +1,4 @@
-package typeSystem
+package typeSystem.`null`
 
 import java.awt.event.ActionEvent
 import javax.swing.AbstractAction

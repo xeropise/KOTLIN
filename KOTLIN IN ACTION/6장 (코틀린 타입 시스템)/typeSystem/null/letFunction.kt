@@ -1,4 +1,4 @@
-package typeSystem
+package typeSystem.`null`
 
 // let 함수를 안전한 호출 연산자와 함께 사용하면, 원하는 식을 평가해서 결과가 널인지 검사한 다음
 // 그 결과를 변수에 넣는 작업을 간단한 식을 사용해 한꺼번에 처리할 수 있다.

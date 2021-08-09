@@ -1,4 +1,4 @@
-package typeSystem
+package typeSystem.`null`
 
 class PersonTwo(val firstName: String, val lastName: String) {
     override fun equals(other: Any?): Boolean {

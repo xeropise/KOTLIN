@@ -1,4 +1,4 @@
-package typeSystem
+package typeSystem.`null`
 
 // null이 될 수 있는 수신 객체에 대해, 확장 함수 호출하기
 fun verifyUserInput (input: String?) {

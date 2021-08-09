@@ -1,4 +1,4 @@
-package typeSystem
+package typeSystem.`null`
 
 // 널 아님 단언을 사용해 널이 될 수 있는 프로퍼티 접근하기
 class MyService {
